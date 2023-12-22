@@ -1,0 +1,23 @@
+
+    hii <%= userss.image %>
+    <img src="<%=paths %>\<%= userss.image %>" style="height:100px;width:100px">
+        <input type="file" name="image" class="form-control">
+        <input type="submit">
+
+    
+    <h1>upload post</h1>
+    <form action="/createPost" method="post" enctype="multipart/form-data">
+    <input type="file" name="image" class="form-control">
+    <input type="submit">
+    </h1>
+    </form>
+<% allPosts.forEach(
+    post => {%>
+      <h1>hii</h1>
+    <%}
+) 
+
+%>
+
+
+

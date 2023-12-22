@@ -1,0 +1,128 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:ital,wght@1,300;1,500&display=swap');
+*{
+  margin:0;
+  padding:0
+}
+body{
+  background-color: black;
+}
+.header-main{
+    height: 90px;
+    background-color: black;
+    width: 100%;
+   }
+   .logo{
+    line-height: 90px;
+    color:white;
+    margin-left: 20px;
+   }
+   .list{
+    float:right;
+    list-style: none;
+    margin-right:20px;
+   }
+   .list li {
+    display: inline;
+    line-height: 90px;
+    color:white;
+    margin-right:30px;
+   }
+   .text-div
+		{
+			background: url("https://i.ibb.co/xjzcbgn/1325000-1.jpg");
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 80px;
+			font-family: 'Bebas Neue', sans-serif;
+            color: transparent;
+			-webkit-background-clip:text;
+			background-size: cover;
+		}
+
+    .fa-heart:before {
+      font-size: 55px;
+      content: "\f004";
+      height: 10px;
+  }
+
+  #text{
+    display: none !important;
+  }
+
+  #list_by_text{
+    font-size: 16px;
+    margin-top: 12px;
+  }
+
+  .bg{
+    height: 70vh !important;
+    animation: bgtransform 5s infinite ease-in-out;
+    overflow-y:auto;
+    border: 1px solid red !important;
+    transition: all .3s;
+  }
+  .bg:hover{
+    filter:grayscale(1);
+  
+  }
+  .likesDesign{
+    position: absolute;
+    top:auto;
+    bottom: auto;
+  }
+
+  .list_header{
+    background-color: transparent;
+    width:100%;
+    height:50px;
+    color: white;
+    cursor: pointer;
+    border:1px solid red;
+    border-left: none;
+    border-right: none;
+  }
+
+  .main-bg{
+    background:url("https://i.ibb.co/47CJzzb/875170.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgba(0, 0, 1, 0.9);
+    background-blend-mode: darken;
+    background-attachment: fixed;
+  }
+
+  .list_header a {
+    text-decoration: none;
+    color:white;
+    font-size: 28px;
+  }
+  
+  .listPageFilter{
+    width: 100%;
+    color: white;
+    margin-bottom: 30px;
+  }
+
+  .type_text{
+    color:white;
+    font-size: 28px;
+  }
+  #element{
+    color:white;
+    font-size:57px ;
+    color: red;
+  }
+  @keyframes bgtransform{
+    0%{
+      background-position: top left
+
+    }
+    50%{
+     background-position: center
+    }
+    100%{
+      background-position: top right;
+    }
+  }

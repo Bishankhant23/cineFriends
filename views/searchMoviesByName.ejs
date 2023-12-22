@@ -1,0 +1,13 @@
+<% data.results.forEach((datas) => {%>
+    <div class="col-4 child d-flex flex-column align-items-center justify-content-center mb-3">
+        <img src="https://image.tmdb.org/t/p/w185/<%=datas.poster_path %>" style="width:200px;object-fit: contain;">
+        <div style="overflow: hidden;font-size:20px"><%= datas.original_title %></div>
+        <div>
+        <button id="<%= datas.id %>" class="btn btn-success add">add</button>
+            <input type="text"  value="<%= datas.original_title %>" name="<%=datas.id  %>" class="title" hidden>
+            <input type="text"  value="<%= datas.poster_path %>" name="<%= datas.id %>" class="poster" hidden>
+             <button id="<%= datas.id %>" class="btn btn-danger">remove</button>
+
+        </div>
+    </div>
+<%})  %>

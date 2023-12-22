@@ -1,0 +1,110 @@
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.css" integrity="sha512-6lLUdeQ5uheMFbWm3CP271l14RsX1xtx+J5x2yeIDkkiBpeVTNhTqijME7GgRKKi6hCqovwCoBTlRBEC20M8Mg==" crossorigin="anonymous" referrerpolicy="no-referrer" />   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+
+  </head>
+<%- include("partials/header") -%>
+<div style="width: 100%" class="d-flex flex-column justify-content-center align-items-center  main-bg">
+    <div class="text-div">
+        <h1 style="text-wrap:nowrap;margin-bottom: 5px;">CINE-FRIENDS</h1>
+    </div>
+    <div class="type_text">
+      what's your favourite?
+    </div>
+    <div style="height:100px">
+      <span id="element"></span>
+    </div>
+    <div class="list_header d-flex justify-content-center align-items-center">
+     <a href="/alllists"> SHOW ALL LISTS </a>
+    </div>
+</div>
+
+
+ <div class="autoplay">
+    <%  
+    movie_list.forEach(list => {%>
+     <div  class="bg px-2" style="position:relative;border-right: 1px solid red;margin-bottom:10px;background-image:url('https://image.tmdb.org/t/p/w185<%=list.movie_ids[0].poster %>');background-repeat: no-repeat;background-size: cover;background-color: rgba(0,0,0,0.8);background-blend-mode: color-dodge;color:white" class="px-5 pt-3">
+        <span id="list_by_text">list by: <%= list.user_name%></span>
+        <h3 class="mb-4"><%= list.name %></h3>
+      <%  
+       list.movie_ids.forEach(moviess => {%>
+         <div class="d-flex mb-3 justify-content-around ps-4" style="border:1px solid white;overflow: hidden;color:white">
+            <div class="d-flex align-items-center" style="font-size: 25px;"><%= moviess.name %></div>
+            <img src="https://image.tmdb.org/t/p/w185/<%=moviess.poster  %>" style="width: 77px;height:77px;margin-left:auto">
+         </div>
+         <!-- <%= moviess.likes %> -->
+       <%})%>
+     
+
+     </div>
+    <%})
+    %>
+ </div>
+ <div style="height:100vh;height:100%">
+
+ </div>
+
+<script>
+    let w =10 ;
+    var typed = new Typed('#element', {
+      strings: ['INCEPTION','INTERSTELLER','TENET','MR.ROBOT','ZODIAC','FIGHT-CLUB','VINLAND-SAGA','YOUR-NAME'],
+      typeSpeed: 50,
+      backSpeed:50,
+      loop:true
+
+    });
+    $('.autoplay').slick({
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 500,
+    prevArrow: false,
+    nextArrow: false
+    });
+   function width(){
+      let div = document.getElementsByClassName("text-div")[0];
+      div.style.width=`${w}px`
+      if(w<700)
+       {w++}
+  }
+
+  
+  setInterval(width,3)
+
+$(document).on("click",".likes",function(){
+   let  _id = $(this).attr("name");
+   let username = $(this).attr("id")
+ console.log("hii")
+   let element = $(this)
+    $.ajax({
+      url:"/addlikes",
+      method:"post",
+      data:{
+        "username" : username,
+        "_id":_id
+      },
+      success:function(res){
+        if(res.statuss==true){
+          element.parent().children().eq(1).html(`${res.total_likes}`)
+          element.addClass("fa-solid")
+          
+         
+        }else{
+          element.parent().children().eq(1).html(`${res.total_likes}`)
+
+          element.removeClass("fa-solid")
+          element.addClass("fa-regular")
+
+          
+        }
+        
+      }
+    })
+  })
+
+</script>
